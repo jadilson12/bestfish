@@ -1,0 +1,13 @@
+# Machine specific overrides, loaded last by fish (see conf.d/99-local.fish.example)
+conf.d/99-local.fish
+
+# Runtime state fish writes into its own config directory
+fish_variables
+fishd.*
+
+# Editor / OS noise
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/

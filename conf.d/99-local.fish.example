@@ -1,0 +1,13 @@
+# Machine specific overrides.
+#
+# Copy this file to conf.d/99-local.fish - the 99 prefix makes fish load it
+# after every other module, and it is ignored by git, so anything that only
+# makes sense on one machine belongs here: work aliases, private paths,
+# credentials-adjacent exports, legacy toolchains.
+
+# Example: a legacy JBoss 7 server pinned to an old JDK.
+# if test -x $HOME/develop/minfra/jboss/bin/standalone.sh
+#     function jboss7 --description 'Run the legacy JBoss 7 server on JDK 7'
+#         JAVA_HOME=/opt/java/jdk1.7.0_75 $HOME/develop/minfra/jboss/bin/standalone.sh $argv
+#     end
+# end

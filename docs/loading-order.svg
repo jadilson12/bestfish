@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-label="bestfish startup order: fish sources conf.d in numeric order, then config.fish, while functions are autoloaded on first use">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace; }
+      .sans { font-family: Inter, -apple-system, "Segoe UI", Roboto, "DejaVu Sans", Helvetica, Arial, sans-serif; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#3d4757"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="600" rx="14" fill="#0f1319"/>
+  <rect x="0.5" y="0.5" width="899" height="599" rx="14" fill="none" stroke="#2a3341"/>
+
+  <!-- header -->
+  <text class="mono" x="36" y="52" font-size="26" fill="#7ee0d0">&#62;&#60;((&#176;&#62;</text>
+  <text class="sans" x="152" y="52" font-size="28" font-weight="600" fill="#f0f6fc">bestfish</text>
+  <text class="sans" x="36" y="82" font-size="14" fill="#8b98a9">bestbash, ported to fish &#8212; one checkout, Linux and macOS</text>
+  <line x1="36" y1="100" x2="864" y2="100" stroke="#222b36"/>
+
+  <!-- column headings -->
+  <text class="sans" x="36" y="128" font-size="11.5" font-weight="600" letter-spacing="1.4" fill="#6f7d8f">AT STARTUP &#183; IN THIS ORDER</text>
+  <text class="sans" x="576" y="128" font-size="11.5" font-weight="600" letter-spacing="1.4" fill="#6f7d8f">ON FIRST USE</text>
+
+  <!-- timeline -->
+  <line x1="52" y1="160" x2="52" y2="495" stroke="#2a3341" stroke-width="2"/>
+
+  <!-- 1. settings -->
+  <circle cx="52" cy="165" r="5" fill="#7ee0d0"/>
+  <rect x="74" y="140" width="452" height="50" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <text class="mono" x="90" y="161" font-size="13.5" fill="#7ee0d0">conf.d/00-settings.fish</text>
+  <text class="sans" x="90" y="179" font-size="12" fill="#93a1b3">is_linux &#183; is_macos &#183; is_arch &#183; is_root</text>
+
+  <!-- 2. env -->
+  <circle cx="52" cy="230" r="5" fill="#7ee0d0"/>
+  <rect x="74" y="205" width="452" height="50" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <text class="mono" x="90" y="226" font-size="13.5" fill="#7ee0d0">conf.d/10-env.fish</text>
+  <text class="sans" x="90" y="244" font-size="12" fill="#93a1b3">PATH &#183; Homebrew &#183; mise &#183; omarchy &#183; SDKs</text>
+
+  <!-- 3. aliases -->
+  <circle cx="52" cy="295" r="5" fill="#7ee0d0"/>
+  <rect x="74" y="270" width="452" height="50" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <text class="mono" x="90" y="291" font-size="13.5" fill="#7ee0d0">conf.d/20-aliases.fish</text>
+  <text class="sans" x="90" y="309" font-size="12" fill="#93a1b3">ll &#183; grep &#183; pacman &#8212; interactive shells only</text>
+
+  <!-- 4. local -->
+  <circle cx="52" cy="360" r="5" fill="#7ee0d0"/>
+  <rect x="74" y="335" width="452" height="50" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <text class="mono" x="90" y="356" font-size="13.5" fill="#7ee0d0">conf.d/99-local.fish</text>
+  <text class="sans" x="90" y="374" font-size="12" fill="#93a1b3">machine overrides &#183; untracked &#183; loads last</text>
+
+  <!-- 5. vendor, suppressed -->
+  <circle cx="52" cy="425" r="5" fill="#39404d"/>
+  <rect x="74" y="400" width="452" height="50" rx="8" fill="#12171f" stroke="#39404d" stroke-dasharray="4 3"/>
+  <text class="mono" x="90" y="421" font-size="13.5" fill="#5a6472">vendor_conf.d/mise-activate.fish</text>
+  <text class="sans" x="90" y="439" font-size="12" fill="#5a6472">suppressed &#8212; this config owns the activation</text>
+
+  <!-- 6. config.fish -->
+  <circle cx="52" cy="490" r="5" fill="#7ee0d0"/>
+  <rect x="74" y="465" width="452" height="50" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <text class="mono" x="90" y="486" font-size="13.5" fill="#7ee0d0">config.fish</text>
+  <text class="sans" x="90" y="504" font-size="12" fill="#93a1b3">your own tweaks &#8212; prompt, colors, greeting</text>
+
+  <text class="sans" x="74" y="540" font-size="11.5" fill="#6f7d8f">fish runs user conf.d before vendor conf.d &#8212; by directory, not by filename.</text>
+  <text class="sans" x="74" y="562" font-size="11.5" fill="#6f7d8f">Every module guards itself: a missing tool or SDK is skipped, never an error.</text>
+
+  <!-- right column: autoloaded functions -->
+  <rect x="576" y="140" width="288" height="245" rx="10" fill="#14181f" stroke="#2a3341"/>
+  <text class="mono" x="596" y="167" font-size="13" fill="#c4a7fb">functions/</text>
+
+  <line x1="596" y1="180" x2="844" y2="180" stroke="#222b36"/>
+
+  <text class="mono" x="596" y="207" font-size="13" fill="#e6edf3">bit</text>
+  <text class="sans" x="596" y="224" font-size="11.5" fill="#8b98a9">git front end &#183; 190 lines, free at startup</text>
+
+  <text class="mono" x="596" y="253" font-size="13" fill="#e6edf3">svc</text>
+  <text class="sans" x="596" y="270" font-size="11.5" fill="#8b98a9">systemctl on Linux, brew services on macOS</text>
+
+  <text class="mono" x="596" y="299" font-size="13" fill="#e6edf3">killport</text>
+  <text class="sans" x="596" y="316" font-size="11.5" fill="#8b98a9">fuser when present, lsof otherwise</text>
+
+  <text class="sans" x="596" y="352" font-size="11.5" fill="#6f7d8f">Autoloaded the first time the</text>
+  <text class="sans" x="596" y="368" font-size="11.5" fill="#6f7d8f">name is typed &#8212; never at startup.</text>
+
+  <!-- platform pills -->
+  <rect x="576" y="405" width="288" height="52" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <circle cx="596" cy="424" r="4" fill="#79c0ff"/>
+  <text class="sans" x="608" y="428" font-size="12" font-weight="600" fill="#79c0ff">Linux</text>
+  <text class="sans" x="596" y="446" font-size="11.5" fill="#8b98a9">systemctl &#183; pacman &#183; omarchy &#183; GNU ls</text>
+
+  <rect x="576" y="465" width="288" height="52" rx="8" fill="#171d26" stroke="#2a3341"/>
+  <circle cx="596" cy="484" r="4" fill="#ffa657"/>
+  <text class="sans" x="608" y="488" font-size="12" font-weight="600" fill="#ffa657">macOS</text>
+  <text class="sans" x="596" y="506" font-size="11.5" fill="#8b98a9">brew services &#183; BSD ls &#183; Aqua session</text>
+
+</svg>
