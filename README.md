@@ -13,16 +13,67 @@ machine, a server or a full desktop.
 
 ## Install
 
+On a machine with nothing to preserve, this repository *is* the config
+directory:
+
 ```fish
-git clone git@github.com:jadilson12/fish.git ~/.config/fish
+git clone git@github.com:jadilson12/bestfish.git ~/.config/fish
 exec fish
 ```
 
 There is no `source` line to add. Unlike bash, fish loads `conf.d/*.fish`
 automatically, so cloning into `~/.config/fish` is the whole installation.
 
-If you already have a `~/.config/fish`, move it aside first — this repository
-*is* the config directory, not a subdirectory of it.
+### Install as an overlay
+
+Clone the repository *beside* the config directory when `~/.config/fish`
+already holds things that are not ours — a plugin manager like fisher, a
+prompt like tide, and the `fish_variables` file fish rewrites at runtime.
+Emptying that directory to make room for a checkout would throw all of it
+away, and keeping it as a checkout means those files show up as untracked
+noise in `git status` forever.
+
+```fish
+git clone git@github.com:jadilson12/bestfish.git ~/.config/bestfish
+```
+
+Then add a single bridge file, `~/.config/fish/conf.d/00-bestfish.fish`:
+
+```fish
+set -l bestfish_root $HOME/.config/bestfish
+
+if test -d $bestfish_root
+    if test -d $bestfish_root/functions; and not contains $bestfish_root/functions $fish_function_path
+        set -g fish_function_path $bestfish_root/functions $fish_function_path
+    end
+
+    if test -d $bestfish_root/completions; and not contains $bestfish_root/completions $fish_complete_path
+        set -g fish_complete_path $bestfish_root/completions $fish_complete_path
+    end
+
+    for module in $bestfish_root/conf.d/*.fish
+        source $module
+    end
+end
+```
+
+`exec fish`, and the checkout stays a clean repository you can `git pull`.
+
+The `00-` prefix is what makes this equivalent to the native install rather
+than merely similar: it sorts first in `conf.d/`, so `00-settings.fish` still
+defines the platform predicates before any module reads them, and your own
+`~/.config/fish/config.fish` still runs last, after every module — the same
+order fish would have produced on its own. Prepending `functions/` to
+`$fish_function_path` keeps `svc`, `bit` and `killport` autoloaded on first
+use, so they still cost nothing at startup.
+
+One thing to watch: whatever your existing `config.fish` already does, it now
+does *in addition* to the modules. If you are migrating from a monolithic
+`config.fish`, the `PATH` exports and aliases it sets are the ones
+`conf.d/10-env.fish` and `conf.d/20-aliases.fish` replace — strip them from
+`config.fish` and leave only what is genuinely yours (prompt, colors,
+machine-local tweaks). `for p in $PATH; echo $p; end | sort | uniq -d` lists
+the entries that are still set twice.
 
 ## Layout
 
